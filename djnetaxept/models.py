@@ -7,7 +7,7 @@ STATUS_CHOICES = (
     ('SALE', 'SALE'),
     ('CAPTURE', 'CAPTURE'),
     ('CREDIT', 'CREDIT'),
-    ('ANNUL', 'ANNUL')
+    ('ANNUL', 'ANNUL'),
 )
 
 
@@ -58,7 +58,8 @@ OPERATION_CHOICES = (
     ('SALE', 'SALE'),
     ('CAPTURE', 'CAPTURE'),
     ('CREDIT', 'CREDIT'),
-    ('ANNUL', 'ANNUL')
+    ('ANNUL', 'ANNUL'),
+    ('VERIFY', 'VERIFY')
 )
 
 
@@ -72,7 +73,7 @@ class NetaxeptTransaction(models.Model):
     responsesource = models.CharField(max_length=20, null=True, blank=True)
     responsetext = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    modified = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     objects = NetaxeptTransactionManager()
 
