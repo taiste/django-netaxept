@@ -35,6 +35,9 @@ class NetaxeptPayment(models.Model):
     def completed(self):
         return not self.flagged
 
+    def __unicode__(self):
+        return 'Payment: %s (%s)' % (self.description, self.responsecode,)
+
 
 RECURRING_CHOICES = (
     ('S', 'S'),
@@ -52,6 +55,8 @@ class NetaxeptRecurringPayment(NetaxeptPayment):
     def verify(self):
         return NetaxeptTransaction.objects.verify_payment(self)
 
+    def __unicode__(self):
+        return 'Recurrence: %s (%s)' % (self.description, self.responsecode,)
 
 OPERATION_CHOICES = (
     ('AUTH', 'AUTH'),
@@ -88,3 +93,6 @@ class NetaxeptTransaction(models.Model):
 
     def completed(self):
         return not self.flagged
+
+    def __unicode__(self):
+        return 'Transaction %s for %d (%s)' % (self.transaction_id, self.payment.pk, self.responsecode,)
