@@ -22,7 +22,7 @@ def get_client():
 def get_netaxept_object(client, obj):
     return client.factory.create('ns1:%s' % obj)
 
-def get_basic_registerrequest(client, redirecturl, language):
+def get_basic_registerrequest(client, redirecturl, language, terminal_design):
     # return a basic registerrequestuest without order
     environment = get_netaxept_object(client, 'Environment')
     environment.Language = None
@@ -37,6 +37,7 @@ def get_basic_registerrequest(client, redirecturl, language):
     terminal.OrderDescription = None
     terminal.RedirectOnError = None
     terminal.RedirectUrl = redirecturl
+    terminal.Design = terminal_design
 
     request = order = get_netaxept_object(client, 'RegisterRequest')
     request.AvtaleGiro = None

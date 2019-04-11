@@ -17,10 +17,11 @@ class NetaxeptPaymentManager(models.Manager):
         currencycode=None,
         ordernumber=None,
         description=None,
-        language=None):
+        language=None,
+        terminal_design=None):
 
         client = get_client()
-        request = get_basic_registerrequest(client, redirect_url, language)
+        request = get_basic_registerrequest(client, redirect_url, language, terminal_design)
 
         order = get_netaxept_object(client, 'Order')
         order.Amount = amount # store
@@ -60,10 +61,11 @@ class NetaxeptRecurringPaymentManager(models.Manager):
         language=None,
         recurring_type=None,
         freq=None,
-        expiry_date=None):
+        expiry_date=None,
+        terminal_design=None):
 
         client = get_client()
-        request = get_basic_registerrequest(client, redirect_url, language)
+        request = get_basic_registerrequest(client, redirect_url, language, terminal_design)
 
         order = get_netaxept_object(client, 'Order')
         order.Amount = amount # store
